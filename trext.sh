@@ -25,7 +25,6 @@ if [ "$doesContainDomain" = "y" ] || [ "$doesContainDomain" = "yes" ] ; then
     echo "Please Enter your subdomain or domain name"
     read DomainName
     echo "Your domain name is $DomainName which should point to $REAL_IP at your dns resolver /n with the proxy option greyed or off"
-
 else
     echo "let us move on then"   
 fi 
@@ -38,25 +37,3 @@ if [ "$TypeOfService" = "x-ui" ] || [ "$TypeOfService" = " x-ui" ] || [ "$TypeOf
 else
     echo $TypeOfService vmess we will use milad rahimi repo  
 fi
-
-apt-get install -y ncurses
-cat ./Greetings_file.txt
-apt install -y apt-utils
-sleep 1
-apt-get remove docker docker-engine docker.io containerd runc
-sleep 1 
-apt-get update 
-sleep 1 
-apt-get install -y ca-certificates curl gnupg lsb-release git
-sleep 1 
-apt-get update
-sleep 1  
-curl -fsSL https://get.docker.com -o get-docker.sh
-sleep 1 
-sh get-docker.sh
-groupadd docker
-sermod -aG docker $USER
-newgrp docker
-
-
-

@@ -1,0 +1,3 @@
+Hello and thanks for using this repo from khoramism 
+we will be installing docker and git 
+and asking you questions about how you'd like this server to behaviour 
