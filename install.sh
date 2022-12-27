@@ -25,6 +25,19 @@ if [ "$doesContainDomain" = "y" ] || [ "$doesContainDomain" = "yes" ] ; then
     echo "Please Enter your subdomain or domain name"
     read DomainName
     echo "Your domain name is $DomainName which should point to $REAL_IP at your dns resolver /n with the proxy option greyed or off"
+    echo "let's install acme and socat for ssl "
+    apt install curl socat -y
+    curl https://get.acme.sh | sh
+    echo "remember that we need to open port ${red} 80 ${reset} for socat server."
+    echo "Set the default provider to Let’s Encrypt:"
+    ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
+    echo "please provide a valid email address to register in letsencrypt"
+    read ValidEmail 
+    ~/.acme.sh/acme.sh --register-account -m xxxx@xxxx.com
+    ~/.acme.sh/acme.sh --issue -d $DomainName --standalone
+    echo "we have successfuly granted the ssl keys now let's move them"
+    mkdir -p /root/cert
+    ~/.acme.sh/acme.sh --installcert -d $DomainName --key-file /root/cert/private.key --fullchain-file /root/cert/cert.crt
 
 else
     echo "let us move on then"   
