@@ -61,7 +61,7 @@ apt-get install -y ncurses
 cat ./Greetings_file.txt
 
 
-if  [ "$SSL_DONE" = true ] && [ "$UseXUI" = true ]   ; then 
+if  [ $SSL_DONE = true ] && [ $UseXUI = true ]   ; then 
     bash ./install_x_ui_docker.sh 
 fi
 
@@ -69,6 +69,6 @@ echo "Now let's install Docker!"
 bash install_docker.sh 
 echo "docker installed!"
 
-if "$UseXUI" = false && "$OutsideIran" = true  ; then 
+if [ $UseXUI = false] && [ $OutsideIran = true]  ; then 
     bash ./install_v2ray_upstream.sh 
 fi 
