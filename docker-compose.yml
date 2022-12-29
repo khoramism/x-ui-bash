@@ -5,6 +5,6 @@ services:
     container_name: x-ui
     volumes:
       - /db/:/etc/x-ui/
-      - /cert/:/root/cert/
+      - /root/cert/:/root/cert/
     restart: unless-stopped
     network_mode: host

@@ -38,9 +38,10 @@ if [ "$doesContainDomain" = "y" ] || [ "$doesContainDomain" = "yes" ] ; then
     echo "we have successfuly granted the ssl keys now let's move them"
     mkdir -p /root/cert
     ~/.acme.sh/acme.sh --installcert -d $DomainName --key-file /root/cert/private.key --fullchain-file /root/cert/cert.crt
-
+    SSL_DONE = true
 else
-    echo "let us move on then"   
+    echo "let us move on then"
+    SSL_DONE = true   
 fi 
 
 echo "would you like a ${red}x-ui${reset} or ${green}just a vmess ${reset}?"
@@ -48,6 +49,7 @@ read TypeOfService
 
 if [ "$TypeOfService" = "x-ui" ] || [ "$TypeOfService" = " x-ui" ] || [ "$TypeOfService" = "xui" ]  ; then
     echo $TypeOfService is x-ui
+    UseXUI = true
 else
     echo $TypeOfService vmess we will use milad rahimi repo  
 fi
@@ -73,3 +75,6 @@ newgrp docker
 
 
 
+if  [ "$SSL_DONE" = true ] && [ "$UseXUI" = true ]   ; then 
+    bash ./install_x_ui_docker.sh 
+fi
