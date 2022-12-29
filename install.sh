@@ -54,7 +54,7 @@ if [ "$TypeOfService" = "x-ui" ] || [ "$TypeOfService" = " x-ui" ] || [ "$TypeOf
     UseXUI = true
 else
     echo $TypeOfService vmess we will use milad rahimi repo  
-    UseV2rayDocker = true
+    UseXUI = false
 fi
 
 apt-get install -y ncurses
@@ -69,7 +69,6 @@ echo "Now let's install Docker!"
 bash install_docker.sh 
 echo "docker installed!"
 
-if "$UseV2rayDocker" = true && "$OutsideIran" = true  ; then 
+if "$UseXUI" = false && "$OutsideIran" = true  ; then 
     bash ./install_v2ray_upstream.sh 
-
 fi 
