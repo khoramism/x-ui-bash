@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+import os 
 import uuid
 import json
 from pathlib import Path
@@ -35,5 +35,6 @@ open(str(path), 'w', encoding='utf-8').write(content)
 # PRINT OUT RESULT
 
 print('Upstream UUID:')
-print(upstreamUUID)
+#print(upstreamUUID)
+os.system(f"echo UUID : {upstreamUUID} >> upstream_server_conf.txt")
 print('\nDone!')

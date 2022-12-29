@@ -15,8 +15,10 @@ echo "where is your server located ${red}bridge(Iran)${reset} or ${green}Upstrea
 read Location
 if [ "$Location" = "Upstream" ] || [ "$Location" = "upstream" ] || [ "$Location" = "not iran" ]  ; then
     echo $Location is located out of iran
+    $OutsideIran = true
 else
     echo $Location is located in iran 
+    $OutsideIran = false
 fi
 
 echo "would you like to add a domain or subdomain name ${red}yes(y)${reset} or ${green} no (n) ${reset}?"
@@ -52,29 +54,22 @@ if [ "$TypeOfService" = "x-ui" ] || [ "$TypeOfService" = " x-ui" ] || [ "$TypeOf
     UseXUI = true
 else
     echo $TypeOfService vmess we will use milad rahimi repo  
+    UseV2rayDocker = true
 fi
 
 apt-get install -y ncurses
 cat ./Greetings_file.txt
-apt install -y apt-utils
-sleep 1
-apt-get remove docker docker-engine docker.io containerd runc
-sleep 1 
-apt-get update 
-sleep 1 
-apt-get install -y ca-certificates curl gnupg lsb-release git
-sleep 1 
-apt-get update
-sleep 1  
-curl -fsSL https://get.docker.com -o get-docker.sh
-sleep 1 
-sh get-docker.sh
-groupadd docker
-sermod -aG docker $USER
-newgrp docker
-
 
 
 if  [ "$SSL_DONE" = true ] && [ "$UseXUI" = true ]   ; then 
     bash ./install_x_ui_docker.sh 
 fi
+
+echo "Now let's install Docker!"
+bash install_docker.sh 
+echo "docker installed!"
+
+if "$UseV2rayDocker" = true && "$OutsideIran" = true  ; then 
+    bash ./install_v2ray_upstream.sh 
+
+fi 
