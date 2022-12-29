@@ -14,7 +14,7 @@ echo "${red}PLEASE ANSWER THESE QUESTIONS ${reset}"
 echo "where is your server located ${red}bridge(Iran)${reset} or ${green}Upstream${reset}?"
 read Location
 if [ "$Location" = "Upstream" ] || [ "$Location" = "upstream" ] || [ "$Location" = "not iran" ]  ; then
-    echo $Location is located out of iran
+    echo "$Location is located out of iran"
     $OutsideIran = true
 else
     echo $Location is located in iran 
@@ -43,7 +43,7 @@ if [ "$doesContainDomain" = "y" ] || [ "$doesContainDomain" = "yes" ] ; then
     SSL_DONE = true
 else
     echo "let us move on then"
-    SSL_DONE = true   
+    SSL_DONE = false   
 fi 
 
 echo "would you like a ${red}x-ui${reset} or ${green}just a vmess ${reset}?"
